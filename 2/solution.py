@@ -3,6 +3,7 @@ import re #https://stackoverflow.com/questions/4664850/how-to-find-all-occurrenc
 f = open("2/input.txt", "r").readlines()
 rtn = 0 #12r, 13g, 14b
 
+#find the number of cubes in a given set of a given color. return 0 if no data
 def get_cubes(set, color):
     i = str(set).find(color)
     if i != -1:
@@ -19,7 +20,7 @@ for l in f:
 
     print(line)
 
-    n = 1
+    n = 1 #checks to see if theres more than one digit in the id number (i.e. > 10)
     while str(line[5:5+n+1]).isnumeric():
         n += 1
     id = int(line[5:5+n])
