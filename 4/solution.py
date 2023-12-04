@@ -1,13 +1,10 @@
-f = open("4/input.txt", "r")
+f = list(open("4/input.txt", "r"))
 
 rtn = 0
+l = 0
 
-for l in range(len(f)):
-    line = f[l].removesuffix("\n").replace(": ", "|")
-
+def num_winners(line):
     line = line.split("|")[1:]
-
-    print(line)
 
     win = [x for x in line[0].split(" ")]
 
@@ -17,21 +14,31 @@ for l in range(len(f)):
 
     given = [x for x in line[1].split(" ")]
 
-    for i in given:
-        if i == "":
-            given.remove(i)
-
     total = 0
 
     for i in given:
         if i in win:
-            if total == 0:
-                total = 1
-            else:
-                total *= 2
+            total += 1
+
+    return total
+
+while l < len(f):
+    print(l, len(f))
+    line = f[l].removesuffix("\n").replace(": ", "|")
+
+    p = line.index("|")
+
+    n = 0
+    while str(line[p - n - 1:p]).isnumeric():
+        n += 1
     
-    print(total)
+    number = int(line[p - n:p])
 
-    rtn += total
+    total = num_winners(line)
 
-print(rtn)
+    for i in range(1, total + 1):
+        f.append(f[number - 1 + i])
+
+    l += 1
+
+print(len(f)) #wait for left number (current index) to catch up to right number (number of games so far)
