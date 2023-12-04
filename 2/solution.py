@@ -1,5 +1,3 @@
-import re #https://stackoverflow.com/questions/4664850/how-to-find-all-occurrences-of-a-substring
-
 f = open("2/input.txt", "r").readlines()
 rtn = 0 #12r, 13g, 14b
 
