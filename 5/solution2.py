@@ -16,7 +16,7 @@ light_temp = []
 temp_humid = []
 humid_loc = []
 
-def next(arr, source): #given a dictionary and source number, return proper destination
+def next(arr, source): #given a dictionary and source, return proper destination
     d = [arr[x] for x in range(0, len(arr), 3)]
     s = [arr[x] for x in range(1, len(arr), 3)]
     i = [arr[x] for x in range(2, len(arr), 3)]
@@ -31,7 +31,7 @@ def next(arr, source): #given a dictionary and source number, return proper dest
 #seeds
 seedsinput = [int(x) for x in re.findall("\d+", f[0])]
 for k in range(0, len(seedsinput), 2):
-    seeds.append(seedsinput[k], seedsinput[k + 1]) #store start and range length
+    seeds += [x for x in range(seedsinput[k], seedsinput[k] + seedsinput[k + 1])]
 
 #seed-soil
 while f[i] != "seed-to-soil map:":
@@ -113,7 +113,7 @@ for seed in seeds:
     humid = next(temp_humid, temp)
     loc = next(humid_loc, humid)
     locs.append(loc)
-    print(seed, soil, fert, water, light, temp, humid, loc)
+    #print(seed, soil, fert, water, light, temp, humid, loc)
 
 
 print(min(seeds))

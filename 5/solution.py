@@ -3,7 +3,7 @@ import re
 
 start = datetime.now()
 
-f = [x.removesuffix("\n") for x in list(open("5/input.txt", "r"))]
+f = [x.removesuffix("\n") for x in list(open("5/example.txt", "r"))]
 
 i = 0 #we will traverse through input for all elements this way
 
@@ -46,7 +46,6 @@ while f[i] != "":
     i += 1
 i += 1
 
-print("seed soil done")
 
 #soil-fert
 while f[i] != "soil-to-fertilizer map:":
@@ -59,7 +58,6 @@ while f[i] != "":
     i += 1
 i += 1
 
-print("soil fert done")
 
 #fert-water
 while f[i] != "fertilizer-to-water map:":
@@ -72,7 +70,6 @@ while f[i] != "":
     i += 1
 i += 1
 
-print("fert water done")
 
 
 #water-light
@@ -86,7 +83,6 @@ while f[i] != "":
     i += 1
 i += 1
 
-print("water light done")
 
 
 #light-temp
@@ -100,8 +96,6 @@ while f[i] != "":
     i += 1
 i += 1
 
-print("light temp done")
-
 
 #temp-humid
 while f[i] != "temperature-to-humidity map:":
@@ -114,9 +108,6 @@ while f[i] != "":
     i += 1
 i += 1
 
-print("temp humid done")
-
-
 #humid-loc
 while f[i] != "humidity-to-location map:":
     i += 1
@@ -126,8 +117,6 @@ while i < len(f):
     nums1 = [int(x) for x in re.findall("\d+", f[i])]
     humid_loc.update(get_dict(nums1[0], nums1[1], nums1[2]))
     i += 1
-
-print("humid loc done")
 
 
 # print(seeds)
@@ -139,20 +128,7 @@ print("humid loc done")
 # print(temp_humid)
 # print(humid_loc)
 
-locs = []
+for i in list(seed_soil.keys()):
+    print(i)
 
-for seed in seeds:
-    soil = next(seed_soil, seed)
-    fert = next(soil_fert, soil)
-    water = next(fert_water, fert)
-    light = next(water_light, water)
-    temp = next(light_temp, light)
-    humid = next(temp_humid, temp)
-    loc = next(humid_loc, humid)
-    locs.append(loc)
-    print(seed, soil, fert, water, light, temp, humid, loc)
-
-
-print(min(locs))
-print(datetime.now() - start)
     
