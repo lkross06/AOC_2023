@@ -5,8 +5,8 @@ start = datetime.now()
 
 f = [x.removesuffix("\n") for x in list(open("6/input.txt", "r"))]
 
-t = [int(x) for x in re.findall("\d+", f[0])]
-d = [int(x) for x in re.findall("\d+", f[1])]
+t = int("".join(re.findall("\d+", f[0])))
+d = int("".join(re.findall("\d+", f[1])))
 
 def get_num_winners(total_time, threshold_distance): #i think the d(t) function is concave + quadratic
     i = 1
@@ -27,10 +27,8 @@ def get_num_winners(total_time, threshold_distance): #i think the d(t) function 
 
     return j - i + 1
 
-product = 1
-
-for i in range(len(t)):
-    product *= get_num_winners(t[i], d[i])
+print(t, d)
+product = get_num_winners(t, d)
 
 print(product)
 print(datetime.now()-start)
